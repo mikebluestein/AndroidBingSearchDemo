@@ -34,24 +34,23 @@ namespace CallRestService
             bing.Search("Xamarin");
         }
 
-        void SyncToMain (List<SearchItem> results)
-        {
-            RunOnUiThread(() =>
-            {
-                this.results = results;
+		void SyncToMain (List<SearchItem> results)
+		{
+			RunOnUiThread (() =>
+			{
+				this.results = results;
 
-				try{
-                ListAdapter = new ArrayAdapter<SearchItem>(
-                    this,
-                    Resource.Layout.SearchItemView,
-                    results
-                );
-				}
-				catch(Java.Lang.NullPointerException){
+				try {
+					ListAdapter = new ArrayAdapter<SearchItem> (
+						this,
+						Resource.Layout.SearchItemView,
+						results
+					);
+				} catch (Java.Lang.NullPointerException) {
 					Console.WriteLine ("Did you add your Azure key to Bing.cs?");
 				}
-            });   
-        }
+			});   
+		}
 
         protected override void OnListItemClick (Android.Widget.ListView l, View v, int position, long id)
         {
